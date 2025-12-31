@@ -1,0 +1,348 @@
+name: Game Development Roadmap
+type: project
+version: 1
+
+# -----------------------------
+#   PROJECT BOARD COLUMNS
+# -----------------------------
+columns:
+  - id: backlog
+    name: Backlog
+  - id: in_progress
+    name: In Progress
+  - id: blocked
+    name: Blocked
+  - id: review
+    name: Review / Polish
+  - id: done
+    name: Done
+
+# -----------------------------
+#   LABEL DEFINITIONS
+# -----------------------------
+labels:
+  - name: Track-A
+    color: "#1f77b4"
+  - name: Track-B
+    color: "#ff7f0e"
+  - name: Track-C
+    color: "#2ca02c"
+  - name: Track-D
+    color: "#d62728"
+  - name: Track-E
+    color: "#9467bd"
+  - name: Track-F
+    color: "#8c564b"
+
+  - name: Nibbles
+    color: "#17becf"
+  - name: Breakout
+    color: "#bcbd22"
+  - name: Gorillas
+    color: "#7f7f7f"
+  - name: President
+    color: "#e377c2"
+  - name: Tetris
+    color: "#aec7e8"
+  - name: MegaMan
+    color: "#ffbb78"
+  - name: Metroid
+    color: "#98df8a"
+  - name: FF2
+    color: "#ff9896"
+
+# -----------------------------
+#   ISSUES (TRACK A)
+# -----------------------------
+issues:
+  - title: A1 — Godot Fundamentals
+    body: |
+      **Description:** Learn nodes, scenes, signals, input, delta time.
+      **Acceptance Criteria:**
+      - Player moves with input
+      - UI label updates
+      - Scene loads without errors
+      **Dependencies:** None
+    labels: [Track-A, Nibbles]
+    column: backlog
+
+  - title: A2 — Collision & Physics Basics
+    body: |
+      **Description:** Implement collisions, physics bodies, layers/masks.
+      **Acceptance Criteria:**
+      - Player collides with walls
+      - Collision callbacks fire
+      - Deterministic movement
+      **Dependencies:** A1
+    labels: [Track-A, Nibbles]
+    column: backlog
+
+  - title: A3 — Game Loop & State Handling
+    body: |
+      **Description:** Implement start/play/end states.
+      **Acceptance Criteria:**
+      - Start screen
+      - Play state
+      - Game over + reset
+      **Dependencies:** A1, A2
+    labels: [Track-A, Nibbles]
+    column: backlog
+
+  - title: A4 — Projectile Math & Procedural Logic
+    body: |
+      **Description:** Implement projectile arcs and procedural skyline.
+      **Acceptance Criteria:**
+      - Parabolic projectile
+      - Procedural city generation
+      **Dependencies:** A1–A3
+    labels: [Track-A, Gorillas]
+    column: backlog
+
+# -----------------------------
+#   ISSUES (TRACK B)
+# -----------------------------
+  - title: B1 — Rule Toggle System
+    body: |
+      **Description:** Build data-driven rule configuration.
+      **Acceptance Criteria:**
+      - Rules load from config
+      - UI toggles update rules
+      **Dependencies:** A1–A4
+    labels: [Track-B, President]
+    column: backlog
+
+  - title: B2 — Turn-Based Logic Engine
+    body: |
+      **Description:** Implement turn queue and legal move validation.
+      **Acceptance Criteria:**
+      - Turn order cycles
+      - Illegal moves blocked
+      **Dependencies:** B1
+    labels: [Track-B, President]
+    column: backlog
+
+  - title: B3 — Card Engine
+    body: |
+      **Description:** Deck, hand, sorting, metadata.
+      **Acceptance Criteria:**
+      - Deck shuffles
+      - Hands deal correctly
+      - Cards sortable
+      **Dependencies:** B1, B2
+    labels: [Track-B, President]
+    column: backlog
+
+  - title: B4 — Basic AI Heuristics
+    body: |
+      **Description:** Implement simple rule-based AI.
+      **Acceptance Criteria:**
+      - AI plays legal moves
+      - AI respects rule toggles
+      **Dependencies:** B1–B3
+    labels: [Track-B, President]
+    column: backlog
+
+# -----------------------------
+#   ISSUES (TRACK C)
+# -----------------------------
+  - title: C1 — Grid Representation
+    body: |
+      **Description:** Implement 2D array grid with occupancy.
+      **Acceptance Criteria:**
+      - Grid renders correctly
+      - Pieces occupy correct cells
+      **Dependencies:** A1–B4
+    labels: [Track-C, Tetris]
+    column: backlog
+
+  - title: C2 — Rotation System (SRS)
+    body: |
+      **Description:** Implement rotation, wall kicks, validation.
+      **Acceptance Criteria:**
+      - All tetrominoes rotate correctly
+      - Wall kicks work
+      **Dependencies:** C1
+    labels: [Track-C, Tetris]
+    column: backlog
+
+  - title: C3 — Input Buffering & Timing
+    body: |
+      **Description:** Implement DAS, ARR, lock delay.
+      **Acceptance Criteria:**
+      - Movement responsive
+      - Lock delay correct
+      **Dependencies:** C1, C2
+    labels: [Track-C, Tetris]
+    column: backlog
+
+  - title: C4 — Game Feel Polish
+    body: |
+      **Description:** Add ghost piece, hold queue, particles.
+      **Acceptance Criteria:**
+      - Ghost piece matches real piece
+      - Hold system works
+      - Visual polish added
+      **Dependencies:** C1–C3
+    labels: [Track-C, Tetris]
+    column: backlog
+
+# -----------------------------
+#   ISSUES (TRACK D)
+# -----------------------------
+  - title: D1 — Advanced Movement
+    body: |
+      **Description:** Implement coyote time, jump buffering, slopes.
+      **Acceptance Criteria:**
+      - Movement feels tight
+      - No jitter on slopes
+      **Dependencies:** A1–C4
+    labels: [Track-D, MegaMan]
+    column: backlog
+
+  - title: D2 — Animation State Machine
+    body: |
+      **Description:** Build animation tree with transitions.
+      **Acceptance Criteria:**
+      - All states animate correctly
+      - No popping
+      **Dependencies:** D1
+    labels: [Track-D, MegaMan]
+    column: backlog
+
+  - title: D3 — Enemy AI Archetypes
+    body: |
+      **Description:** Implement multiple enemy types.
+      **Acceptance Criteria:**
+      - At least 3 enemy behaviors
+      - Hitboxes/hurtboxes functional
+      **Dependencies:** D1, D2
+    labels: [Track-D, MegaMan]
+    column: backlog
+
+  - title: D4 — Boss Framework
+    body: |
+      **Description:** Multi-phase boss logic.
+      **Acceptance Criteria:**
+      - Boss transitions phases
+      - Telegraphs implemented
+      **Dependencies:** D3
+    labels: [Track-D, MegaMan]
+    column: backlog
+
+  - title: D5 — Modular Weapon System
+    body: |
+      **Description:** Implement weapon switching and upgrades.
+      **Acceptance Criteria:**
+      - Multiple weapons
+      - Cooldowns and energy costs
+      **Dependencies:** D1–D4
+    labels: [Track-D, MegaMan]
+    column: backlog
+
+# -----------------------------
+#   ISSUES (TRACK E)
+# -----------------------------
+  - title: E1 — World Structure & Scene Streaming
+    body: |
+      **Description:** Build multi-room world with transitions.
+      **Acceptance Criteria:**
+      - Rooms load seamlessly
+      - Player state persists
+      **Dependencies:** D1–D5
+    labels: [Track-E, Metroid]
+    column: backlog
+
+  - title: E2 — Ability Gating
+    body: |
+      **Description:** Implement upgrades and locked areas.
+      **Acceptance Criteria:**
+      - Areas unlock with abilities
+      - Backtracking functional
+      **Dependencies:** E1
+    labels: [Track-E, Metroid]
+    column: backlog
+
+  - title: E3 — Save/Load + Map System
+    body: |
+      **Description:** Serialization + minimap.
+      **Acceptance Criteria:**
+      - Save anywhere
+      - Map tracks explored rooms
+      **Dependencies:** E1, E2
+    labels: [Track-E, Metroid]
+    column: backlog
+
+  - title: E4 — Complex Enemy Behaviors
+    body: |
+      **Description:** Flying, crawling, shooting enemies.
+      **Acceptance Criteria:**
+      - At least 4 enemy archetypes
+      - Behaviors interact with environment
+      **Dependencies:** E1–E3
+    labels: [Track-E, Metroid]
+    column: backlog
+
+  - title: E5 — Multi-Phase Bosses
+    body: |
+      **Description:** Build multi-stage bosses.
+      **Acceptance Criteria:**
+      - Boss escalates patterns
+      - Damage thresholds trigger phases
+      **Dependencies:** E4
+    labels: [Track-E, Metroid]
+    column: backlog
+
+# -----------------------------
+#   ISSUES (TRACK F)
+# -----------------------------
+  - title: F1 — Turn-Based Combat Engine
+    body: |
+      **Description:** Implement FF2-style combat.
+      **Acceptance Criteria:**
+      - Turn order
+      - Targeting
+      - Damage formulas
+      **Dependencies:** E1–E5
+    labels: [Track-F, FF2]
+    column: backlog
+
+  - title: F2 — Character Progression
+    body: |
+      **Description:** Stats, spells, leveling, equipment.
+      **Acceptance Criteria:**
+      - Characters gain stats
+      - Equipment modifies attributes
+      **Dependencies:** F1
+    labels: [Track-F, FF2]
+    column: backlog
+
+  - title: F3 — Dialogue & Cutscene System
+    body: |
+      **Description:** Build scripting system for story events.
+      **Acceptance Criteria:**
+      - Dialogue triggers
+      - Cutscenes play correctly
+      **Dependencies:** F1, F2
+    labels: [Track-F, FF2]
+    column: backlog
+
+  - title: F4 — Overworld + Towns + Dungeons
+    body: |
+      **Description:** Build tilemaps, encounters, NPCs.
+      **Acceptance Criteria:**
+      - Overworld navigation
+      - Towns with NPCs
+      - Dungeons with encounters
+      **Dependencies:** F1–F3
+    labels: [Track-F, FF2]
+    column: backlog
+
+  - title: F5 — Content Pipeline & Tools
+    body: |
+      **Description:** Build data-driven content system.
+      **Acceptance Criteria:**
+      - JSON/CSV-driven content
+      - Add new items/enemies without code changes
+      **Dependencies:** F1–F4
+    labels: [Track-F, FF2]
+    column: backlog
